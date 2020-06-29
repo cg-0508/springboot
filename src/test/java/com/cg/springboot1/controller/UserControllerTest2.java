@@ -43,7 +43,7 @@ public class UserControllerTest2 {
                 "    \"id\": 1,\n" +
                 "    \"username\": \"username:1\"\n" +
                 "}")); // 响应结果
-    
+
         resultActions.andDo(MockMvcResultHandlers.print());
 
     }
