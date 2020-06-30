@@ -1,6 +1,8 @@
 package com.cg.springboot1.controller;
 
+import com.cg.springboot1.constants.ResultCode;
 import com.cg.springboot1.entity.User;
+import com.cg.springboot1.exception.ServiceException;
 import com.cg.springboot1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,6 +54,21 @@ public class UserController {
     public User get2(@PathVariable("id") Integer id){
         return userService.get(id);
     }
+
+
+
+    @GetMapping("/exception1")
+    public User exception1() {
+        throw new NullPointerException("error");
+    }
+
+
+    @GetMapping("/exception2")
+    public User exception2() {
+        throw new ServiceException(ResultCode.PARAM_IS_BLANK);
+    }
+
+
 
 
 }
