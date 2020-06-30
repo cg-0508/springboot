@@ -4,6 +4,8 @@ import com.cg.springboot1.constants.ResultCode;
 import com.cg.springboot1.entity.User;
 import com.cg.springboot1.exception.ServiceException;
 import com.cg.springboot1.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @RestController
@@ -20,6 +23,10 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
+
 
     /**
      * @return 用户列表
@@ -69,6 +76,16 @@ public class UserController {
     }
 
 
+    @GetMapping("/do_something")
+    public void doSomething() {
+        logger.info("[doSomething]");
+    }
+
+    @GetMapping("/current_user")
+    public User currentUser() {
+        logger.info("[currentUser]");
+        return new User().setId(10).setUsername(UUID.randomUUID().toString());
+    }
 
 
 }
